@@ -1,0 +1,84 @@
+**Most Relevant Terms API with Python**
+----
+  Returns JSON data on that includes semantically most relevant terms to the queried term with Python
+
+* **URL**
+
+  /topn
+
+* **Method:**
+
+  `POST` 
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `userid=[string]` Any string is OK <br />
+   `word=[string]`   Term to query
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ word : [string], top20 : [(term1_string, rel1_string), ... , (termN_string, relN,string)] }`
+    
+    `termK_string : string of Kth top relevant term to query term` <br />
+    `relN_string : string of relevance of KTh top relevant term to query term`
+     
+* **Error Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ error : "xyz does not exist in database" }`
+
+* **Sample Call:**
+
+  ```javascript
+$.ajax({
+  url: http://52.221.86.148/api/ideation/concepts + '/topn',
+  type: "POST",
+  contentType: 'application/json',
+  dataType: 'json',
+  async: true,
+  data: JSON.stringify({"userid":userid, "word": word}),
+  success: function(response) {
+    console.log(response);
+  
+    if (response['error']!=null){
+      return (0)
+    }
+          topN = response['top20'];
+  },
+  error: function() {
+    return (0)
+  }
+  });
+  ```
+
+* **Python:**
+
+```python
+userid = 'Any string is OK'
+word = 'QUERY_TERM'
+
+data = {"userid": userid, "word": word}
+
+try:
+    response = requests.post(
+                             "http://52.221.86.148/api/ideation/concepts/getTree",
+                             headers={"Content-Type": "application/json"},
+                             data=json.dumps(data)
+                             )
+
+    if response.status_code == 200:
+        graph_data = response.json()
+        print(f'Success')
+    else:
+        print(f"Error: {response.status_code}, {response.text}")
+
+except requests.exceptions.RequestException as e:
+    print(f"Request failed: {e}")
+```
