@@ -70,7 +70,7 @@ try:
         preprocessed_text = result.get("processed", "")
         print(f'Success')
     else:
-    print(f"Error: {response.status_code}, {response.text}")
+        print(f"Error: {response.status_code}, {response.text}")
 
 except requests.exceptions.RequestException as e:
     print(f"Request failed: {e}")
