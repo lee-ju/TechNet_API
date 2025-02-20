@@ -52,8 +52,11 @@ $.ajax({
 * **Python:**
 
 ```python
+import requests
+import json
+
 userid = 'Any string is OK'
-word = 'QUERY_TERM'
+word = 'QUERY_TERM' # ex. autonomous vehicle
 
 data = {"userid": userid, "word": word}
 
