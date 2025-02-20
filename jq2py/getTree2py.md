@@ -35,7 +35,7 @@
 
 * **JQ:**
 
-  ```javascript
+```javascript
   $.ajax({
   	url: http://52.221.86.148/api/ideation/concepts + '/getTree',
 	type: "POST",
@@ -47,33 +47,30 @@
         var graph_data = response;
 	},
 	});
-  ```
+```
 
 * **Python:**
 
-  ```python
-	userid = 'Any string is OK'
-  word = 'QUERY_TERM'
-  
-	data = {
-  "userid": userid,
-  "word": word
-  }
-  
-	try:
-  	response = requests.post(
-                             "http://52.221.86.148/api/ideation/concepts/getTree",
-                             headers={"Content-Type": "application/json"},
-                             data=json.dumps(data)
-                            )
-  
-		if response.status_code == 200:
-  		graph_data = response.json()
-  		print(f'Success')
-		else:
-  		print(f"Error: {response.status_code}, {response.text}")
-  
-	except requests.exceptions.RequestException as e:
-  	print(f"Request failed: {e}")
-  ```
+```python
+userid = 'Any string is OK'
+word = 'QUERY_TERM'
+
+data = {"userid": userid, "word": word}
+
+try:
+	response = requests.post(
+		"http://52.221.86.148/api/ideation/concepts/getTree",
+		headers={"Content-Type": "application/json"},
+		data=json.dumps(data)
+		)
+
+	if response.status_code == 200:
+		graph_data = response.json()
+		print(f'Success')
+	else:
+		print(f"Error: {response.status_code}, {response.text}")
+
+except requests.exceptions.RequestException as e:
+	print(f"Request failed: {e}")
+```
 
