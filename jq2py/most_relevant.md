@@ -76,20 +76,18 @@ try:
                             data=json.dumps(data)
                             )
 
-    # 응답 처리
     if response.status_code == 200:
         result = response.json()
         print(f'Success')
 
-        # 오류 확인
         if "error" in result and result["error"] is not None:
             topN = 0
         else:
-            topN = result.get("top20", 0)  # 'top20'이 없으면 기본값 0 설정
+            topN = result.get("top20", 0)
     else:
-        topN = 0  # 오류 발생 시 0 반환
+        topN = 0
 
 except requests.exceptions.RequestException as e:
     print(f"Request failed: {e}")
-    topN = 0  # 요청 실패 시 0 반환
+    topN = 0
 ```
