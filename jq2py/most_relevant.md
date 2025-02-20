@@ -1,4 +1,4 @@
-**Most Relevant Terms API with Python**
+**Most Relevant Terms API to Python**
 ----
   Returns JSON data on that includes semantically most relevant terms to the queried term with Python
 
@@ -61,24 +61,35 @@ $.ajax({
 * **Python:**
 
 ```python
-userid = 'Any string is OK'
-word = 'QUERY_TERM'
+import requests
+import json
+
+userid = 'anything'
+word = 'QUERY_TERM' # ex. autonomous vehicle
 
 data = {"userid": userid, "word": word}
 
 try:
     response = requests.post(
-                             "http://52.221.86.148/api/ideation/concepts/getTree",
-                             headers={"Content-Type": "application/json"},
-                             data=json.dumps(data)
-                             )
+                            "http://52.221.86.148/api/ideation/concepts/topn",
+                            headers={"Content-Type": "application/json"},
+                            data=json.dumps(data)
+                            )
 
+    # 응답 처리
     if response.status_code == 200:
-        graph_data = response.json()
+        result = response.json()
         print(f'Success')
+
+        # 오류 확인
+        if "error" in result and result["error"] is not None:
+            topN = 0
+        else:
+            topN = result.get("top20", 0)  # 'top20'이 없으면 기본값 0 설정
     else:
-        print(f"Error: {response.status_code}, {response.text}")
+        topN = 0  # 오류 발생 시 0 반환
 
 except requests.exceptions.RequestException as e:
     print(f"Request failed: {e}")
+    topN = 0  # 요청 실패 시 0 반환
 ```
