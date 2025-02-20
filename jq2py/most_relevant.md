@@ -34,7 +34,7 @@
   * **Code:** 200 <br />
     **Content:** `{ error : "xyz does not exist in database" }`
 
-* **Sample Call:**
+* **JQ:**
 
 ```javascript
 $.ajax({
