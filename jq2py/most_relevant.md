@@ -36,7 +36,7 @@
 
 * **Sample Call:**
 
-  ```javascript
+```javascript
 $.ajax({
   url: http://52.221.86.148/api/ideation/concepts + '/topn',
   type: "POST",
@@ -56,7 +56,7 @@ $.ajax({
     return (0)
   }
   });
-  ```
+```
 
 * **Python:**
 
