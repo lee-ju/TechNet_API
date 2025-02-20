@@ -52,6 +52,9 @@ $.ajax({
 * **Python:**
 
 ```python
+import requests
+import json
+
 userid = 'Any string is OK'
 paragraph = 'QUERY_TERM'
 
