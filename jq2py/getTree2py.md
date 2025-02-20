@@ -36,15 +36,15 @@
 * **JQ:**
 
 ```javascript
-  $.ajax({
-  	url: http://52.221.86.148/api/ideation/concepts + '/getTree',
+$.ajax({
+	url: http://52.221.86.148/api/ideation/concepts + '/getTree',
 	type: "POST",
 	contentType: 'application/json',
 	dataType: 'json',
 	async: true,
 	data: JSON.stringify({"userid":userid, "word": word}),
 	success: function(response) {
-        var graph_data = response;
+	var graph_data = response;
 	},
 	});
 ```
@@ -58,19 +58,19 @@ word = 'QUERY_TERM'
 data = {"userid": userid, "word": word}
 
 try:
-	response = requests.post(
-		"http://52.221.86.148/api/ideation/concepts/getTree",
-		headers={"Content-Type": "application/json"},
-		data=json.dumps(data)
-		)
+    response = requests.post(
+                             "http://52.221.86.148/api/ideation/concepts/getTree",
+                             headers={"Content-Type": "application/json"},
+                             data=json.dumps(data)
+                             )
 
-	if response.status_code == 200:
-		graph_data = response.json()
-		print(f'Success')
-	else:
-		print(f"Error: {response.status_code}, {response.text}")
+    if response.status_code == 200:
+        graph_data = response.json()
+        print(f'Success')
+    else:
+        print(f"Error: {response.status_code}, {response.text}")
 
 except requests.exceptions.RequestException as e:
-	print(f"Request failed: {e}")
+    print(f"Request failed: {e}")
 ```
 
